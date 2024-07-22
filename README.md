@@ -12,14 +12,14 @@
 1. โคลน repository:
 
     ```bash
-    git clone https://github.com/username/repository-name.git
-    cd repository-name
+    git clone https://github.com/ramath-x/next-login.git
+    cd next-login
     ```
 
 2. สร้างและรันคอนเทนเนอร์:
 
     ```bash
-    docker-compose up --build
+    docker-compose up --d
     ```
 
 3. เปิดเบราว์เซอร์ของคุณและไปที่ `http://localhost:3000` เพื่อดูแอปพลิเคชันที่กำลังทำงาน
@@ -27,3 +27,6 @@
 ## การหยุดคอนเทนเนอร์
 
 หากต้องการหยุดการทำงานของ
+
+```bash
+docker-compose down
