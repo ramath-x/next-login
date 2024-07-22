@@ -3,7 +3,7 @@ export default function LoginForm() {
 
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-xl shadow-lg">
-                <h2 className="text-3xl font-bold text-center text-gray-800">Login</h2>
+                <div className="text-3xl font-bold text-center text-gray-800">Login</div>
                 <form onSubmit="#" className="">
                     <div>Email
                         <label class="mt-2 mb-2 input input-bordered flex items-center gap-2">
