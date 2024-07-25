@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   db:
     image: postgres:latest
@@ -12,14 +10,15 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
 
-  web:
-    build: .
-    ports:
-      - "3000:3000"
-    depends_on:
-      - db
-    environment:
-      DATABASE_URL: postgres://user:user123@db:5432/next-login
+  # web:
+  #   image: node:20-alpine
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - db
+  #   environment:
+  #     DATABASE_URL: postgres://user:user123@db:5432/next-login
 
 volumes:
   pgdata:
+    driver: local
