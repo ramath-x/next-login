@@ -11,7 +11,7 @@ export default function LoginForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const result = await signIn("credentials", {
+    const result = await signIn("domain-login", {
       email,
       password,
       redirect: false,
@@ -88,10 +88,18 @@ export default function LoginForm() {
         <div class="mt-6 text-center">
           <p class="text-gray-600">Or continue with</p>
           <div class="flex justify-center mt-3">
-            <button class="mx-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none focus:bg-blue-700">
-              Facebook
+            <button
+              type="button"
+              onClick={() => signIn("line")}
+              class="mx-2 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 focus:outline-none focus:bg-green-700"
+            >
+              Line
             </button>
-            <button class="mx-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600">
+            <button
+              type="button"
+              onClick={() => signIn("google")}
+              class="mx-2 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 focus:outline-none focus:bg-red-600"
+            >
               Google
             </button>
           </div>
