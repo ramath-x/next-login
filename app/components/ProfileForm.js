@@ -10,12 +10,6 @@ export default function ProfileForm() {
 
   const router = useRouter();
 
-  // setName(session?.user?.name);
-  // setEmail(session?.user?.email);
-
-  // console.log("name", name);
-  // console.log("email", name);
-  // console.log("status", status);
   useEffect(() => {
     if (status === "unauthenticated") {
       router.push("/");
@@ -35,12 +29,16 @@ export default function ProfileForm() {
             <div className="mt-2 mb-2 text-3xl font-bold text-center text-gray-800">
               My Profile
             </div>
-            <div className="mt-2 mb-2 avatar items-center justify-center">
-              <div className="w-24 rounded-full ">
-                <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            <div className="grid grid-cols-3 gap-2">
+              <div></div>
+              <div className="avatar">
+                <div className="w-24 rounded-full ">
+                  <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                </div>
               </div>
+              <div></div>
             </div>
-            <div className="card-body">
+            <div className="card-body p-0">
               <div className="grid grid-cols-2 gap-2">
                 <div className="mt-2 mb-2">
                   {" "}
@@ -101,7 +99,7 @@ export default function ProfileForm() {
                   value={email}
                 ></input>
               </label>
-              <div className="flex flex-row-reverse">
+              <div className="flex flex-row-reverse hidden">
                 <button className="btn btn-primary">Edit Profile</button>
               </div>
               <div>
