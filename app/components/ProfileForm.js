@@ -7,6 +7,9 @@ export default function ProfileForm() {
   const { data: session, status } = useSession();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [images, setImages] = useState("");
+  const default_image =
+    "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp";
 
   const router = useRouter();
 
@@ -17,6 +20,7 @@ export default function ProfileForm() {
     if (status === "authenticated") {
       setName(session?.user?.name);
       setEmail(session?.user?.email);
+      // setImages(session?.user?.image?default_image);
     }
   }, [status, router]);
 
