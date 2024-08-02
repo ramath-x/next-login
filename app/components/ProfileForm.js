@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import { useSession, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -8,6 +9,7 @@ export default function ProfileForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [images, setImages] = useState("");
+  const [lastName, setLastName] = useState("");
   const default_image =
     "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp";
 
@@ -18,9 +20,11 @@ export default function ProfileForm() {
       router.push("/");
     }
     if (status === "authenticated") {
+      console.log("user id", session.user.id);
       setName(session?.user?.name);
-      setEmail(session?.user?.email);
-      // setImages(session?.user?.image?default_image);
+      setEmail(session?.user?.email ?? "-");
+      setImages(session?.user?.image ?? default_image);
+      setLastName(session?.user?.last_name ?? "-");
     }
   }, [status, router]);
 
@@ -37,7 +41,7 @@ export default function ProfileForm() {
               <div></div>
               <div className="avatar">
                 <div className="w-24 rounded-full ">
-                  <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                  <img src={images} />
                 </div>
               </div>
               <div></div>
@@ -79,8 +83,8 @@ export default function ProfileForm() {
                     <input
                       type="text"
                       className="grow"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
                     />
                   </label>
                 </div>

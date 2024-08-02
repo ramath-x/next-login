@@ -1,14 +1,20 @@
 "use client";
 
-import { useState } from "react";
-import { signIn } from "next-auth/react";
+import { useState, useEffect } from "react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
+  const { status } = useSession();
 
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push("/profile");
+    }
+  }, [status, router]);
   const handleSubmit = async (event) => {
     event.preventDefault();
     const result = await signIn("domain-login", {
@@ -80,7 +86,7 @@ export default function LoginForm() {
             </label>
           </div>
 
-          <a href="">Forgot password?</a>
+          <a href="/register">Sing Up</a>
           <button type="submit" class="mt-2 mb-2 btn btn-block btn-neutral">
             Login
           </button>

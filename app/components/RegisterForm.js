@@ -1,7 +1,33 @@
 "use client";
+
+import axios from "axios";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
 export default function RegisterForm() {
-  const handleSubmit = () => {
-    console.log("register");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  const handleSubmit = async () => {
+    console.log("Register", firstName, lastName, email, password);
+    // axios post api/auth/signup with name:firstName, last_name:lastName, email, password
+    // axios post api/auth/signup with name:firstName, last_name:lastName, email, password
+    const result = await axios.post("/api/auth/signup", {
+      name: firstName,
+      last_name: lastName,
+      email,
+      password,
+    });
+
+    if (result.status === 200) {
+      return router.push("/login");
+    }
+    if (result.status !== 200) {
+      alert(result.data.message);
+    }
   };
 
   return (
@@ -24,7 +50,13 @@ export default function RegisterForm() {
                 >
                   <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
                 </svg>
-                <input type="text" className="grow" placeholder="First Name" />
+                <input
+                  type="text"
+                  className="grow"
+                  placeholder="First Name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
               </label>
             </div>
             <div className="mt-2 mb-2 mr-3">
@@ -39,7 +71,13 @@ export default function RegisterForm() {
                 >
                   <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z" />
                 </svg>
-                <input type="text" className="grow" placeholder="Last Name" />
+                <input
+                  type="text"
+                  className="grow"
+                  placeholder="Last Name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
               </label>
             </div>
           </div>
@@ -58,6 +96,8 @@ export default function RegisterForm() {
               type="text"
               className="grow"
               placeholder="Enter your Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </label>
           <div>Password</div>
@@ -74,7 +114,13 @@ export default function RegisterForm() {
                 clipRule="evenodd"
               />
             </svg>
-            <input type="password" className="grow" placeholder="***********" />
+            <input
+              type="password"
+              className="grow"
+              placeholder="***********"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </label>
           <div className="flex flex-row-reverse">
             <button
